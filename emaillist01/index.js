@@ -33,7 +33,7 @@ const application = express()
         res.locals.res = res;           // request에 저장하면 template에서도 response 사용하기 위해서 함  ex) Servlet 의 request와 JSP의 request처럼 같게 하기 위해
         next();                         // routes callback이 2개 이상 걸려있으면 next()를 써야함  .use('/', function)
     })
-    .use('/user', emaillistRouter);
+    .use('/', emaillistRouter);
     
 
     /* .use('/', function(req, res, next) {
