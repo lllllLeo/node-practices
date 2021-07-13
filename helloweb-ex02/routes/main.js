@@ -5,4 +5,6 @@ router.route("").get(function(req, res){
     res.render('main/index');
 });
 module.exports = router;
-// exports = mainRouter 하면 외부에서 mainRouter.mainRouter.~해야한대
+// exports = router;
+// console.log(module.exports);
+// exports = mainRouter; 하면 외부에서 mainRouter.mainRouter.~해야한대

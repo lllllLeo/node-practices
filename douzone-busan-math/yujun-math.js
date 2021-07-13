@@ -1,4 +1,5 @@
 exports.sum = function() {
+    console.log(arguments + "ggㅎㅎ");
     let sum = 0;
     // Array.prototype.forEach.call(arguments, function(e){ // 유사배열이라서 Array prototype forEach사용
     

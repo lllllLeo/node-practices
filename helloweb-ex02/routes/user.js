@@ -1,7 +1,22 @@
 const express = require('express');
 
 const router = express.Router(); // chain 안걸림
-router.route("/join").get(function(req, res){
+router.route("/info/:no").get(function(req, res){
+    res.render('user/info', {
+        no: req.params.no || 0
+    });
+
+    console.log(req.params);
+    console.log(req.query);
+    // info/12
+    // { no: '12' }
+    // {}
+
+    // info/12?title=134
+    // { no: '12' }
+    // { title: '134' }
+})
+;router.route("/join").get(function(req, res){
     res.render('user/join');
 });
 router.route("/join").post(function(req, res){
@@ -20,4 +35,4 @@ router.route("/api").get(function(req, res){
     res.end(JSON.stringify(vo));
 });
 module.exports = router;
-// exports = mainRouter 하면 외부에서 mainRouter.mainRouter.~해야한대
+// exports = mainRouter 하면 외부에서 mainRouter.mainRouter. ~해야한대
