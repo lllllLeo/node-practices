@@ -20,16 +20,16 @@ io.on('connection', (socket) => {   //연결이 들어오면 실행되는 이벤
 
     // on 함수로 이벤트를 정의해 신호를 수신할 수 있다.
     // socket.on('message', (msg) => {
-    socket.on('message', (msg, roomname) => {
+    // socket.on('message', (msg, roomname) => {
+    socket.on('message', (data) => {
         //msg에는 클라이언트에서 전송한 매개변수가 들어온다. 이러한 매개변수의 수에는 제한이 없다.
-        console.log('Message received: ' +  msg);
-        console.log('이방한테간다' +  roomname);
+        console.log('Message received: ' +  data.msg + 'by: ' + data.nick);
 
         // io.emit으로 연결된 모든 소켓들에 신호를 보낼 수 있다.
         // io.emit('message', msg);
 
        // io.to(방이름).emit으로 특정 방의 소켓들에게 신호를 보낼 수 있다.
-       io.to(roomname).emit('message', msg);
+       io.to(data.roomname).emit('message', data.nick + ' : ' + data.msg);
 
     });
        // 룸 전환 신호
@@ -51,6 +51,10 @@ debug.on('connection', (socket) => {
   socket.on('getRooms', () => { 
     // 다른 네임스페이스의 객체에도 접근할 수 있다.
     socket.emit('rooms', io.sockets.adapter.rooms);
+    // console.log(io.sockets.adapter.rooms);
+    // console.log(io.of('/').adapter.rooms);
+    // console.log(sockets.adapter.rooms);
+    
   });
 });
 
